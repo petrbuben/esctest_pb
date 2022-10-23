@@ -10,19 +10,26 @@
  */
 
 /**
- *  @file TrigerEvent.h
+ *  @file Modules.h
  *  @author Petr Buben
- *  @brief Header file for TriggerEvent.c
+ *  @brief Definition of enumerate containing names of all modules
  *
- * Copyright 2022 esc Aerospace s.r.o., All rights reserved.
+ * Copyright 2021 esc Aerospace s.r.o., All rights reserved.
  */
 
-#ifndef __TRIGGEREVENT_H__
-#define __TRIGGEREVENT_H__
+#ifndef __MODULES_H__
+#define __MODULES_H__
 
-#include "Event.h"
-#include <sys/timeb.h>
+#include <stdio.h>
 
-char TriggerEvent_TrigEvSim(struct timeb, Severity_et, Type_et, char* file, int line, char [32]);
+/* Typedef containing all modules */
+typedef enum
+{
+	E_MODULES_ID_MAINEVENTLOOP           = 1U,
+	E_MODULES_ID_EVENT                   = 2U,
+	E_MODULES_ID_QUEUE                   = 3U
+	E_MODULES_ID_TRIGGEREVENT            = 1U,
+	E_MODULES_ID_WRITEAPPENDEVENTS       = 2U
+} Modules_Id_e;
 
-#endif /* __TRIGGEREVENT_H__ */
+#endif /* __MODULES_H__ */

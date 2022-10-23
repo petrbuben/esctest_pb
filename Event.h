@@ -24,7 +24,9 @@
 
 #define EV_FILE_LOC_SIZE  400
 #define NUM_TYPEVENTS       6
-#define EV_RECORD_SIZE   1000
+#define EV_RECORD_SIZE    100
+#define RATE_TRESHOLDevPerS  0.17 //.1
+#define REPORT_RESTARTmins  1 //10
 
 typedef enum
 {
@@ -43,12 +45,14 @@ typedef enum
     E_GENERAL
 } Type_et;
 
- typedef struct Event {
+ typedef struct Event { //listedlargest to smallest - padding avoidance
+    char file_loc [EV_FILE_LOC_SIZE];
+    char user_param[32];
     Severity_et sev_e;
     Type_et typ_e;
-    char file_loc [EV_FILE_LOC_SIZE];
+    float type_event_rate;
     uint8_t line_num;
-    char user_param[32];
+    int type_event_count;
  } Event_t;
 
  #endif /* __EVENT_H__ */

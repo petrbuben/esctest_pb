@@ -10,19 +10,21 @@
  */
 
 /**
- *  @file TrigerEvent.h
+ *  @file WriteAppendEvents.h
  *  @author Petr Buben
- *  @brief Header file for TriggerEvent.c
+ *  @brief Header file for WriteAppendEvents.c
  *
  * Copyright 2022 esc Aerospace s.r.o., All rights reserved.
  */
 
-#ifndef __TRIGGEREVENT_H__
-#define __TRIGGEREVENT_H__
+#ifndef __WRITEAPPENDEVENTS_H__
+#define __WRITEAPPENDEVENTS_H__
 
 #include "Event.h"
-#include <sys/timeb.h>
 
-char TriggerEvent_TrigEvSim(struct timeb, Severity_et, Type_et, char* file, int line, char [32]);
+ #define WA_FILENAME "events.txt"
 
-#endif /* __TRIGGEREVENT_H__ */
+void WriteAppendEvens_write_file(Event_t *);
+
+
+#endif // __WRITEAPPENDEVENTS_H__

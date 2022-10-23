@@ -1,0 +1,26 @@
+Timestamp:20220923203206
+Severity:E_NORMAL_REPORT Type:E_FILENOTFOUND Count:1 Rate:0.100
+File:C:\Users\Asus\source\repos\esctest\mainEventLoop.c Line:8
+User Par:0
+Timestamp:20220923203207
+Severity:E_MEDIUM_SEVERITY Type:E_NULL_ARG Count:1 Rate:0.090
+File:C:\Users\Asus\source\repos\esctest\mainEventLoop.c Line:10
+User Par:0
+Medium severity exception, resetting
+
+Timestamp:20220923203255
+Severity:E_NORMAL_REPORT Type:E_FILENOTFOUND Count:1 Rate:0.165
+File:C:\Users\Asus\source\repos\esctest\mainEventLoop.c Line:8
+User Par:0
+Timestamp:20220923203256
+Severity:E_MEDIUM_SEVERITY Type:E_NULL_ARG Count:1 Rate:0.141
+File:C:\Users\Asus\source\repos\esctest\mainEventLoop.c Line:10
+User Par:0
+Medium severity exception, resetting
+
+Timestamp:20220923203307
+Severity:E_MEDIUM_SEVERITY Type:E_NULL_ARG Count:1 Rate:0.965
+File:C:\Users\Asus\source\repos\esctest\mainEventLoop.c Line:10
+User Par:0
+Medium severity exception, resetting
+
