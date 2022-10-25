@@ -17,14 +17,20 @@
  * Copyright 2022 esc Aerospace s.r.o., All rights reserved.
  */
 
- #include "WriteAppendEvens_write_file.h"
+ #include "WriteAppendEvents.h"
  #include "Event.h"
+ #include "Modules.h"
+ #include "service.h"
  #include <stdio.h>
  #include <stdlib.h>
  #include <time.h>
+ #include <stdalign.h>
 
-extern const char* Queue_SevEv_e[];
-extern const char* Queue_TypeEv_e[];
+ //static const Modules_Id_e m_eModuleId = E_MODULES_ID_WRITEAPPENDEVENTS;
+
+
+extern alignas(64) const char* Queue_SevEv_e[];
+extern alignas(64) const char* Queue_TypeEv_e[];
 
 char *time_stamp(){
 
@@ -39,8 +45,7 @@ sprintf(timestamp,"%04d%02d%02d%02d%02d%02d", tm->tm_year+1900, tm->tm_mon,
 return timestamp;
 }
 
-
-void WriteAppendEvens_write_file(Event_t *ev)
+void WriteAppendEvents_write_file(Event_t *ev)
 {
      FILE *ofptr;
      ofptr = fopen(WA_FILENAME,"a");
@@ -49,6 +54,7 @@ void WriteAppendEvens_write_file(Event_t *ev)
      {
          //raise critical error
          printf("\nError: unable to open the file\n");
+         mainEventLoop_Raise_critical(E_FILE, __FILE__, __LINE__);
          exit(-1);
      }
 
@@ -62,7 +68,6 @@ void WriteAppendEvens_write_file(Event_t *ev)
     }
 
     fclose (ofptr);
-
 
     return;
 }

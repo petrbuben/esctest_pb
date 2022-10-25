@@ -23,7 +23,7 @@
 #include <stdint.h>
 
 #define EV_FILE_LOC_SIZE  400
-#define NUM_TYPEVENTS       6
+#define NUM_TYPEVENTS       7
 #define EV_RECORD_SIZE    100
 #define RATE_TRESHOLDevPerS  0.17 //.1
 #define REPORT_RESTARTmins  1 //10
@@ -42,6 +42,7 @@ typedef enum
     E_RAW_QUEUE_UNDERFLOW,
     E_RAW_QUEUE_OVERFLOW,
     E_MEMORY,
+    E_FILE,
     E_GENERAL
 } Type_et;
 

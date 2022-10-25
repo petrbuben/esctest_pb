@@ -19,18 +19,22 @@
 
 #include "Queue.h"
 #include "Event.h"
+#include "Modules.h"
 #include "TriggerEvent.h"
+#include "service.h"
 #include <stdlib.h>
+
+//static const Modules_Id_e m_eModuleId = E_MODULES_ID_QUEUE;
 
 extern alignas(64) Event_t TriggerEvent_ev; //if cacheline 64b
 extern uint8_t ev_arr_index;
 extern alignas(64) Event_t mainEventLoop_Events_record_array[EV_RECORD_SIZE];
 extern struct timeb tstart, tend;
 
-//alignas not possible here, extern
-const char* Queue_SevEv_e[] = {"E_LOW_SEVERITY","E_NORMAL_REPORT","E_MEDIUM_SEVERITY"};
-const char* Queue_TypeEv_e[] = {"E_NULL_ARG", "E_FILENOTFOUND", "E_RAW_QUEUE_UNDERFLOW",
-"E_RAW_QUEUE_OVERFLOW","E_MEMORY","E_GENERAL"};
+alignas(64) const char* Queue_SevEv_e[] = {"E_LOW_SEVERITY","E_NORMAL_REPORT","E_MEDIUM_SEVERITY"};
+alignas(64) const char* Queue_TypeEv_e[] = {"E_NULL_ARG", "E_FILENOTFOUND", "E_RAW_QUEUE_UNDERFLOW",
+"E_RAW_QUEUE_OVERFLOW","E_MEMORY","E_FILE","E_GENERAL"};
+char Type_enabled[NUM_TYPEVENTS] = {'1', '1', '1', '1', '1', '1', '0'};
 
 Event_t Queue_Raw_events_queue[RAW_Q_SIZE];
 int Rear = -1;
@@ -43,13 +47,8 @@ void Queue_Enqueue(Event_t * prEvent)
     {
        printf("Overflow \n"); //tbd exc
        //record and exit
-       TriggerEvent_TrigEvSim(tstart, E_MEDIUM_SEVERITY, E_RAW_QUEUE_OVERFLOW, __FILE__, __LINE__, "0");
-       mainEventLoop_Events_record_array[ev_arr_index] = TriggerEvent_ev;
-       printf("Record array %s in file %s",
-              Queue_TypeEv_e[mainEventLoop_Events_record_array[ev_arr_index].typ_e],
-              mainEventLoop_Events_record_array[ev_arr_index].file_loc);
-       printf("\n\nE_MEDIUM_SEVERITY event, exiting.........\n");
-       system("pause");
+       mainEventLoop_Raise_critical(E_RAW_QUEUE_OVERFLOW, __FILE__, __LINE__);
+
        exit(-1);
     }
     else
@@ -73,13 +72,8 @@ Event_t Queue_Dequeue(void)
     {
         printf("\nUnderflow \n");
         //record and exit tbd
-        TriggerEvent_TrigEvSim(tstart, E_MEDIUM_SEVERITY, E_RAW_QUEUE_UNDERFLOW, __FILE__, __LINE__, "0");
-        mainEventLoop_Events_record_array[ev_arr_index] = TriggerEvent_ev;
-        printf("Record array %s in file %s",
-               Queue_TypeEv_e[mainEventLoop_Events_record_array[ev_arr_index].typ_e],
-               mainEventLoop_Events_record_array[ev_arr_index].file_loc);
-        printf("\n\nE_MEDIUM_SEVERITY event, exiting.........\n");
-        system("pause");
+        mainEventLoop_Raise_critical(E_RAW_QUEUE_UNDERFLOW, __FILE__, __LINE__);
+
         exit(-1);
     }
     else
@@ -93,7 +87,7 @@ Event_t Queue_Dequeue(void)
 
 uint8_t Queue_Show(void)
 {
-    if ((Rear == Front-1) ||(-1 == Front))
+    if ((Rear == Front-1) || (-1 == Front))
     {
         printf("Empty Queue \n");
         return 0;

@@ -27,9 +27,10 @@ typedef enum
 {
 	E_MODULES_ID_MAINEVENTLOOP           = 1U,
 	E_MODULES_ID_EVENT                   = 2U,
-	E_MODULES_ID_QUEUE                   = 3U
-	E_MODULES_ID_TRIGGEREVENT            = 1U,
-	E_MODULES_ID_WRITEAPPENDEVENTS       = 2U
+	E_MODULES_ID_QUEUE                   = 3U,
+	E_MODULES_ID_TRIGGEREVENT            = 4U,
+	E_MODULES_ID_WRITEAPPENDEVENTS       = 5U,
+	E_MODULES_ID_NVMMEM                  = 6U
 } Modules_Id_e;
 
 #endif /* __MODULES_H__ */

@@ -19,8 +19,11 @@
 
 #include "TriggerEvent.h"
 #include "Queue.h"
+#include "Modules.h"
 #include <stdio.h>
 #include <string.h>
+
+//static const Modules_Id_e m_eModuleId = E_MODULES_ID_TRIGGEREVENT;
 
 alignas(64) Event_t TriggerEvent_ev; //if cacheline 64b
 extern alignas(64) Event_t mainEventLoop_Events_record_array[EV_RECORD_SIZE];

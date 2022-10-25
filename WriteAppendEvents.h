@@ -10,7 +10,7 @@
  */
 
 /**
- *  @file WriteAppendEvents.h
+ *  @file WriteAppendEvents_write_file.h
  *  @author Petr Buben
  *  @brief Header file for WriteAppendEvents.c
  *
@@ -24,7 +24,7 @@
 
  #define WA_FILENAME "events.txt"
 
-void WriteAppendEvens_write_file(Event_t *);
+void WriteAppendEvents_write_file(Event_t *);
 
 
 #endif // __WRITEAPPENDEVENTS_H__
