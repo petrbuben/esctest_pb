@@ -8,19 +8,21 @@
  */
 
 /**
- *  @file TrigerEvent.h
+ *  @file service.h
  *  @author Petr Buben
- *  @brief Header file for TriggerEvent.c
+ *  @brief Header file for service.c
  *
  * Copyright 2022 s.r.o., All rights reserved.
  */
 
-#ifndef __TRIGGEREVENT_H__
-#define __TRIGGEREVENT_H__
+ #ifndef __SERVICE_H__
+ #define __SERVICE_H__
 
-#include "Event.h"
-#include <sys/timeb.h>
+ #include "Event.h"
+ #include <stdint.h>
 
-char TriggerEvent_TrigEvSim(struct timeb, Severity_et, Type_et, char* file, int line, char [32]);
+ void mainEventLoop_Raise_critical(Type_et, char*, uint8_t);
+ float figure_rate(void);
+ void Record_rate_count_write_file(void);
 
-#endif /* __TRIGGEREVENT_H__ */
+ #endif

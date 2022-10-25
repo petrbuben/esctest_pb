@@ -1,8 +1,6 @@
 /*
  ******************************************************************************
  *                                                                            *
- *                           esc Aerospace s.r.o.                             *
- *                       https://www.esc-aerospace.com                        *
  *                                                                            *
  *                           ALL RIGHTS RESERVED                              *
  *                                                                            *
@@ -14,7 +12,7 @@
  *  @author Petr Buben
  *  @brief Simulating triggering of events
  *
- * Copyright 2022 esc Aerospace s.r.o., All rights reserved.
+ * Copyright s.r.o., All rights reserved.
  */
 
 #include "TriggerEvent.h"

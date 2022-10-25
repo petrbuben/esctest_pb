@@ -1,8 +1,6 @@
 /*
  ******************************************************************************
  *                                                                            *
- *                           esc Aerospace s.r.o.                             *
- *                       https://www.esc-aerospace.com                        *
  *                                                                            *
  *                           ALL RIGHTS RESERVED                              *
  *                                                                            *
@@ -14,7 +12,7 @@
  *  @author Petr Buben
  *  @brief  This module is used to write data into the non-volatile memory.
  *
- * Copyright 2021 esc Aerospace s.r.o., All rights reserved.
+ * Copyright 2021 s.r.o., All rights reserved.
  */
 
 #include "TriggerEvent.h"
